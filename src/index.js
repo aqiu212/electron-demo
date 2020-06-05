@@ -105,7 +105,13 @@ app.on('ready', async () => {
   setApplicationMenu()
   setAppTray()
 
-  
+  if (process.env.NODE_ENV === "development") {
+    try {
+      await installVueDevtools()
+    } catch (e) {
+      console.error('Vue Devtools failed to install:', e.toString())
+    }
+  }
 })
 
 if (isDevelopment) {
